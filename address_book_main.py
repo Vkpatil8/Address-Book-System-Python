@@ -2,8 +2,8 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 08-02-2022 19:30:00
-@Title : solve use case 3
+@Last Modified time: 08-02-2022 22:00:00
+@Title : solve use case 4
 """
 
 print("welcome in Address Book")
@@ -17,14 +17,17 @@ class Contact:
         desc: Add contact details using console
         """
         self.firstname = input("Enter first name: ")
-        self.lastname = input("Enter last name: ")
-        self.address = input("Enter address: ")
-        self.city = input("Enter city: ")
-        self.state = input("Enter state: ")
-        self.zipcode = input("Enter zipcode: ")
-        self.phonenumber = input("Enter phone number: ")
-        self.email = input("Enter email: ")
-        self.addcontact()
+        if self.firstname in Contact.contactlist.keys():
+            self.lastname = input("Enter last name: ")
+            self.address = input("Enter address: ")
+            self.city = input("Enter city: ")
+            self.state = input("Enter state: ")
+            self.zipcode = input("Enter zipcode: ")
+            self.phonenumber = input("Enter phone number: ")
+            self.email = input("Enter email: ")
+            self.addcontact()
+        else:
+            print("Already exist")
 
     def addcontact(self):
         """
@@ -46,15 +49,18 @@ class EditContact:
         """
         desc: Edit existing contact
         """
-        a = Contact.contactlist[name]
-        print(a)
-        while True:
-            changeoption = int(input("Select where u want to change \n1:firstname\n2:lastname\n3:address\n4:city\n5"
-                                     ":state\n6:zipcode\n7:phonenumber\n8:email\n9:exit\n"))
-            if changeoption == 9:
-                break
-            value = input("Enter new: ")
-            Contact.contactlist[name]["{}".format(changeoption)] = value
+        if name in Contact.contactlist.keys():
+            a = Contact.contactlist[name]
+            print(a)
+            while True:
+                changeoption = int(input("Select where u want to change \n1:firstname\n2:lastname\n3:address\n4:city\n5"
+                                         ":state\n6:zipcode\n7:phonenumber\n8:email\n9:exit\n"))
+                if changeoption == 9:
+                    break
+                value = input("Enter new: ")
+                Contact.contactlist[name]["{}".format(changeoption)] = value
+        else:
+            print("Not exist")
 
 
 class ShowContact:
@@ -66,4 +72,26 @@ class ShowContact:
         """
         desc: show particular contact details
         """
-        print(Contact.contactlist[name])
+        if name in Contact.contactlist.keys():
+            print(Contact.contactlist[name])
+        else:
+            print("Not exist")
+
+
+
+class DeleteContact:
+    def __init__(self, name):
+        self.name = name
+        self.deletecontact(name)
+
+    def deletecontact(self, name):
+        """
+        desc: Delete particular contact from book
+        """
+        if name in Contact.contactlist.keys():
+            del Contact.contactlist[name]
+            print("contact details of {} is delete successfully".format(name))
+
+        else:
+            print("Not exist")
+
