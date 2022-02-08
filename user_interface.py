@@ -1,37 +1,31 @@
+"""
+@Author: Vishal Patil
+@Date: 08-02-2022 11-00-00
+@Last Modified by: Vishal Patil
+@Last Modified time: 08-02-2022 19:30:00
+@Title : solve use case 3
+"""
+
 from address_book_main import Contact, EditContact, ShowContact
 
 
-def contact():
-    Contact()
-
-
-def editcontact():
-    contactname = input("Enter contact name\n")
-    EditContact(contactname)
-
-
-def close():
-    pass
-
-
-def showcontact():
-    contactname = input("Enter contact name\n")
-    ShowContact(contactname)
-
 class ShowMenu:
-    @classmethod
-    def show_main_menu(cls, option):
+    """
+        desc: Show mein menu
+    """
+    while True:
+        option = int(input("1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Exit\n"))
         if option == 1:
-            contact()
+            Contact()
         elif option == 2:
-            editcontact()
+            contactname = input("Enter contact name\n")
+            EditContact(contactname)
         elif option == 3:
-            showcontact()
+            contactname = input("Enter contact name\n")
+            ShowContact(contactname)
         else:
-            close()
+            break
 
 
 if __name__ == '__main__':
-    while True:
-        option = int(input("1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Exit\n"))
-        ShowMenu.show_main_menu(option)
+    ShowMenu()
