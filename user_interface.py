@@ -28,8 +28,9 @@ class ShowMenu:
             contactname = input("Enter contact name\n")
             DeleteContact(contactname)
         elif option == 5:
-            cityname = input("Enter city name\n")
-            SearchContact(cityname)
+            searchoption = int(input("1: Search by city name\n2: Search by state name\n"))
+            cityname = input("Enter name: ")
+            SearchContact(searchoption, cityname)
         else:
             break
 

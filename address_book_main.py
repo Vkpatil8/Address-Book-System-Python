@@ -101,9 +101,18 @@ class DeleteContact:
 
 
 class SearchContact:
-    def __init__(self, name):
+    def __init__(self, option, name):
         self.name = name
-        self.searchbycityname(name)
+        self.option = option
+        self.options(option, name)
+
+    def options(self, option, name):
+        if option == 1:
+            self.searchbycityname(name)
+        elif option == 2:
+            self.searchbystatename(name)
+        else:
+            print("Choose Correct Option")
 
     def searchbycityname(self, cityname):
         """
@@ -112,3 +121,15 @@ class SearchContact:
         for name in Contact.contactlist.keys():
             if Contact.contactlist[name]['4'] == cityname:
                 print(Contact.contactlist[name])
+            else:
+                print("Not available")
+
+    def searchbystatename(self, statename):
+        """
+        desc: search particular contact from book using city name
+        """
+        for name in Contact.contactlist.keys():
+            if Contact.contactlist[name]['5'] == statename:
+                print(Contact.contactlist[name])
+            else:
+                print("Not available")
