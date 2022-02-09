@@ -107,10 +107,8 @@ class SearchContact:
 
     def searchbycityname(self, cityname):
         """
-        desc: Delete particular contact from book
+        desc: search particular contact from book using city name
         """
         for name in Contact.contactlist.keys():
-            # print(Contact.contactlist[name])
-            for data in Contact.contactlist[name]:
-                if Contact.contactlist[name][data] == cityname:
-                    print(Contact.contactlist[name])
+            if Contact.contactlist[name]['4'] == cityname:
+                print(Contact.contactlist[name])
