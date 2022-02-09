@@ -2,8 +2,8 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 08-02-2022 22:00:00
-@Title : solve use case 6
+@Last Modified time: 09-02-2022 12:30:00
+@Title : solve use case 7
 """
 
 print("welcome in Address Book")
@@ -17,7 +17,7 @@ class Contact:
         desc: Add contact details using console
         """
         self.firstname = input("Enter first name: ")
-        if self.firstname in Contact.contactlist.keys():
+        if self.firstname not in Contact.contactlist.keys():
             self.lastname = input("Enter last name: ")
             self.address = input("Enter address: ")
             self.city = input("Enter city: ")
@@ -28,6 +28,11 @@ class Contact:
             self.addcontact()
         else:
             print("Already exist")
+
+    def __eq__(self, other):
+        if Contact.contactlist[self.firstname] == Contact.contactlist[other.firstname]:
+            return False
+        return True
 
     def addcontact(self):
         """
@@ -78,7 +83,6 @@ class ShowContact:
             print("Not exist")
 
 
-
 class DeleteContact:
     def __init__(self, name):
         self.name = name
@@ -94,4 +98,3 @@ class DeleteContact:
 
         else:
             print("Not exist")
-
