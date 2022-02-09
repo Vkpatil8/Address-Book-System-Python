@@ -2,10 +2,9 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 13:30:00
-@Title : solve use case 8
+@Last Modified time: 09-02-2022 14:00:00
+@Title : solve use case 9
 """
-
 from address_book_main import Contact, EditContact, ShowContact, DeleteContact, SearchContact
 
 
@@ -15,7 +14,7 @@ class ShowMenu:
     """
     while True:
         option = int(input("1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Delete\n5. Search Contact by "
-                           "city\n6. Exit\n"))
+                           "city or state\n6. Exit\n"))
         if option == 1:
             Contact()
         elif option == 2:
