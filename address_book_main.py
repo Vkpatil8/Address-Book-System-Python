@@ -2,8 +2,8 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 12:30:00
-@Title : solve use case 7
+@Last Modified time: 09-02-2022 13:30:00
+@Title : solve use case 8
 """
 
 print("welcome in Address Book")
@@ -98,3 +98,19 @@ class DeleteContact:
 
         else:
             print("Not exist")
+
+
+class SearchContact:
+    def __init__(self, name):
+        self.name = name
+        self.searchbycityname(name)
+
+    def searchbycityname(self, cityname):
+        """
+        desc: Delete particular contact from book
+        """
+        for name in Contact.contactlist.keys():
+            # print(Contact.contactlist[name])
+            for data in Contact.contactlist[name]:
+                if Contact.contactlist[name][data] == cityname:
+                    print(Contact.contactlist[name])

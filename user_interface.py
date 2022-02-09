@@ -2,11 +2,11 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 12:30:00
-@Title : solve use case 7
+@Last Modified time: 09-02-2022 13:30:00
+@Title : solve use case 8
 """
 
-from address_book_main import Contact, EditContact, ShowContact, DeleteContact
+from address_book_main import Contact, EditContact, ShowContact, DeleteContact, SearchContact
 
 
 class ShowMenu:
@@ -14,7 +14,8 @@ class ShowMenu:
         desc: Show mein menu
     """
     while True:
-        option = int(input("1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Delete\n5. Exit\n"))
+        option = int(input("1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Delete\n5. Search Contact by "
+                           "city\n6. Exit\n"))
         if option == 1:
             Contact()
         elif option == 2:
@@ -26,6 +27,9 @@ class ShowMenu:
         elif option == 4:
             contactname = input("Enter contact name\n")
             DeleteContact(contactname)
+        elif option == 5:
+            cityname = input("Enter city name\n")
+            SearchContact(cityname)
         else:
             break
 
