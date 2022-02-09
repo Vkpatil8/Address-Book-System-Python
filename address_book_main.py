@@ -2,9 +2,11 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 14:30:00
-@Title : solve use case 11
+@Last Modified time: 09-02-2022 20:00:00
+@Title : solve use case 12
 """
+from collections import OrderedDict
+from operator import getitem
 
 
 class Contact:
@@ -27,19 +29,14 @@ class Contact:
         else:
             print("Already exist\n")
 
-    def __eq__(self, other):
-        if Contact.contactlist[self.firstname] == Contact.contactlist[other.firstname]:
-            return False
-        return True
-
     def addcontact(self):
         """
         desc: Add object in dictionary
         """
-        Contact.contactlist[self.firstname] = {"1": self.firstname, "2": self.lastname,
-                                               "3": self.address, "4": self.city, "5": self.state,
-                                               "6": self.zipcode, "7": self.phonenumber,
-                                               "8": self.email}
+        Contact.contactlist[self.firstname] = {"firstname": self.firstname, "lastname": self.lastname,
+                                               "address": self.address, "city": self.city, "state": self.state,
+                                               "zipcode": self.zipcode, "phonenumber": self.phonenumber,
+                                               "email": self.email}
 
 
 class EditContact:
@@ -51,6 +48,7 @@ class EditContact:
     def editcontact(self, name):
         """
         desc: Edit existing contact
+        :parameter name - assign name:
         """
         if name in Contact.contactlist.keys():
             a = Contact.contactlist[name]
@@ -58,10 +56,32 @@ class EditContact:
             while True:
                 changeoption = int(input("Select where u want to change \n1:firstname\n2:lastname\n3:address\n4:city\n5"
                                          ":state\n6:zipcode\n7:phonenumber\n8:email\n9:exit\n"))
-                if changeoption == 9:
+                if changeoption == 1:
+                    value = input("Enter new: ")
+                    Contact.contactlist[name]["firstname"] = value
+                elif changeoption == 2:
+                    value = input("Enter new: ")
+                    Contact.contactlist[name]["lastname"] = value
+                elif changeoption == 3:
+                    value = input("Enter new: ")
+                    Contact.contactlist[name]["address"] = value
+                elif changeoption == 4:
+                    value = input("Enter new: ")
+                    Contact.contactlist[name]["city"] = value
+                elif changeoption == 5:
+                    value = input("Enter new: ")
+                    Contact.contactlist[name]["state"] = value
+                elif changeoption == 6:
+                    value = input("Enter new: ")
+                    Contact.contactlist[name]["zipcode"] = value
+                elif changeoption == 7:
+                    value = input("Enter new: ")
+                    Contact.contactlist[name]["phonenumber"] = value
+                elif changeoption == 8:
+                    value = input("Enter new: ")
+                    Contact.contactlist[name]["email"] = value
+                else:
                     break
-                value = input("Enter new: ")
-                Contact.contactlist[name]["{}".format(changeoption)] = value
         else:
             print("Not exist\n")
 
@@ -74,6 +94,7 @@ class ShowContact:
     def showdetails(self, name):
         """
         desc: show particular contact details
+        :parameter name - assign name:
         """
         if name in Contact.contactlist.keys():
             print(Contact.contactlist[name])
@@ -89,6 +110,7 @@ class DeleteContact:
     def deletecontact(self, name):
         """
         desc: Delete particular contact from book
+        :parameter name - assign book name:
         """
         if name in Contact.contactlist.keys():
             del Contact.contactlist[name]
@@ -105,6 +127,12 @@ class SearchContact:
         self.options(option, name)
 
     def options(self, option, name):
+        """
+        desc: search particular contact from book using city name
+        :parameter option: assign options to call methods
+        :parameter name - assign name:
+        """
+
         if option == 1:
             self.searchbycityname(name)
         elif option == 2:
@@ -115,9 +143,10 @@ class SearchContact:
     def searchbycityname(self, cityname):
         """
         desc: search particular contact from book using city name
+        :parameter cityname: assign city name to search
         """
         for name in Contact.contactlist.keys():
-            if Contact.contactlist[name]['4'] == cityname:
+            if Contact.contactlist[name]['city'] == cityname:
                 print("\tContact details is {}\n".format(Contact.contactlist[name]))
             else:
                 print("\tNot available\n")
@@ -125,9 +154,10 @@ class SearchContact:
     def searchbystatename(self, statename):
         """
         desc: search particular contact from book using city name
+        :parameter statename: assign state name
         """
         for name in Contact.contactlist.keys():
-            if Contact.contactlist[name]['5'] == statename:
+            if Contact.contactlist[name]['state'] == statename:
                 print("\tContact details is {}\n".format(Contact.contactlist[name]))
             else:
                 print("\tNot available\n")
@@ -140,6 +170,11 @@ class SearchAndCountContact:
         self.options(option, name)
 
     def options(self, option, name):
+        """
+        desc: search particular contact from book using city name
+        :parameter option: assign options to call methods
+        :parameter name - assign name:
+        """
         if option == 1:
             self.searchbycityname(name)
         elif option == 2:
@@ -150,10 +185,11 @@ class SearchAndCountContact:
     def searchbycityname(self, cityname):
         """
         desc: count particular contact from book using city name
+        :parameter cityname - assign cityname:
         """
         count = 0
         for name in Contact.contactlist.keys():
-            if Contact.contactlist[name]['4'] == cityname:
+            if Contact.contactlist[name]['city'] == cityname:
                 count = count + 1
             else:
                 print("\tNot available")
@@ -162,10 +198,11 @@ class SearchAndCountContact:
     def searchbystatename(self, statename):
         """
         desc: count particular contact from book using city name
+        :parameter statename: assign state name
         """
         count = 0
         for name in Contact.contactlist.keys():
-            if Contact.contactlist[name]['5'] == statename:
+            if Contact.contactlist[name]['state'] == statename:
                 count = count + 1
             else:
                 print("\tNot available")
@@ -173,9 +210,50 @@ class SearchAndCountContact:
 
 
 class Sort:
-    def __init__(self):
-        self.sortbyname()
+    def __init__(self, option):
+        self.option = option
+        self.options(option)
+
+    def options(self, option):
+        """
+        desc: search particular contact from book using city name
+        :parameter option: assign options to call methods
+        """
+        if option == 1:
+            self.sortbyname()
+        elif option == 2:
+            self.sortbycity()
+        elif option == 3:
+            self.sortbystate()
+        elif option == 4:
+            self.sortbyzip()
+        else:
+            print("\tChoose Correct Option\n")
 
     def sortbyname(self):
+        """
+        desc: sort by name
+        """
         list1 = sorted(Contact.contactlist.items())
         print(list1)
+
+    def sortbycity(self):
+        """
+        desc: sort by city name
+        """
+        res = OrderedDict(sorted(Contact.contactlist.items(), key=lambda x: getitem(x[1], 'city')))
+        print("The sorted dictionary by city name is : " + str(res))
+
+    def sortbystate(self):
+        """
+        desc: sort by state name
+        """
+        res = OrderedDict(sorted(Contact.contactlist.items(), key=lambda x: getitem(x[1], 'state')))
+        print("The sorted dictionary by state name is : " + str(res))
+
+    def sortbyzip(self):
+        """
+        desc: sort by zip code
+        """
+        res = OrderedDict(sorted(Contact.contactlist.items(), key=lambda x: getitem(x[1], 'zip')))
+        print("The sorted dictionary by zip code is : " + str(res))

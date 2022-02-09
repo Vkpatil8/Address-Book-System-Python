@@ -2,9 +2,10 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 14:30:00
-@Title : solve use case 11
+@Last Modified time: 09-02-2022 20:00:00
+@Title : solve use case 12
 """
+
 from address_book_main import Contact, EditContact, ShowContact, DeleteContact, SearchContact, SearchAndCountContact, \
     Sort
 
@@ -15,7 +16,7 @@ class ShowMenu:
     """
     while True:
         option = int(input("\n1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Delete\n5. Search Contact by "
-                           "city or state\n6. Count Contacts by city or state\n7. Sort by name\n8. Exit\n"))
+                           "city or state\n6. Count Contacts by city or state\n7. Sort\n8. Exit\n"))
         if option == 1:
             Contact()
         elif option == 2:
@@ -36,7 +37,9 @@ class ShowMenu:
             cityname = input("\tEnter name: ")
             SearchAndCountContact(searchoption, cityname)
         elif option == 7:
-            Sort()
+            sortoption = int(input("\t1: sort by name\n\t2: sort by city name\n\t3: sort by state name\n\t4: sort by "
+                                   "zip code\n\t"))
+            Sort(sortoption)
         else:
             break
 
