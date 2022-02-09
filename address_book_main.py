@@ -2,8 +2,8 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 14:20:00
-@Title : solve use case 10
+@Last Modified time: 09-02-2022 14:30:00
+@Title : solve use case 11
 """
 
 
@@ -170,3 +170,12 @@ class SearchAndCountContact:
             else:
                 print("\tNot available")
         print("\tcount of contacts in contact book is {}\n".format(count))
+
+
+class Sort:
+    def __init__(self):
+        self.sortbyname()
+
+    def sortbyname(self):
+        list1 = sorted(Contact.contactlist.items())
+        print(list1)
