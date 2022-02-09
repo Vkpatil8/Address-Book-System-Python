@@ -2,9 +2,10 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 20:00:00
-@Title : solve use case 12
+@Last Modified time: 09-02-2022 20:30:00
+@Title : solve use case 13
 """
+
 from collections import OrderedDict
 from operator import getitem
 
@@ -257,3 +258,38 @@ class Sort:
         """
         res = OrderedDict(sorted(Contact.contactlist.items(), key=lambda x: getitem(x[1], 'zip')))
         print("The sorted dictionary by zip code is : " + str(res))
+
+
+class ReadAndWrite:
+    def __init__(self, option):
+        self.option = option
+        self.options(option)
+
+    def options(self, option):
+        """
+        desc: search particular contact from book using city name
+        :parameter option: assign options to call methods
+        """
+        if option == 1:
+            self.writefile()
+        elif option == 2:
+            self.readfile()
+        else:
+            print("\tChoose Correct Option\n")
+
+    def writefile(self):
+        """
+        desc: Write all details in file
+        """
+        with open("addresbook.txt", 'w') as file:
+            for key, value in Contact.contactlist.items():
+                file.write("{} : {}\n".format(key, value))
+            print("file write successfully")
+        file.close()
+
+    def readfile(self):
+        """
+        desc: read all details in file
+        """
+        file = open("addresbook.txt", "r")
+        print(file.read())

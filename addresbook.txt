@@ -1,0 +1,2 @@
+vishal : {'firstname': 'vishal', 'lastname': 'patil', 'address': 'limb', 'city': 'tasgaon', 'state': 'maha', 'zipcode': '416312', 'phonenumber': '8329235763', 'email': 'vishal@gmail.com'}
+vaibhav : {'firstname': 'vaibhav', 'lastname': 'patil', 'address': 'limb', 'city': 'tasgaon', 'state': 'maha', 'zipcode': '416312', 'phonenumber': '9595030695', 'email': 'vaibhav@gmail.com'}

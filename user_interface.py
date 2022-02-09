@@ -2,12 +2,12 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 20:00:00
-@Title : solve use case 12
+@Last Modified time: 09-02-2022 20:30:00
+@Title : solve use case 13
 """
 
 from address_book_main import Contact, EditContact, ShowContact, DeleteContact, SearchContact, SearchAndCountContact, \
-    Sort
+    Sort, ReadAndWrite
 
 
 class ShowMenu:
@@ -16,7 +16,8 @@ class ShowMenu:
     """
     while True:
         option = int(input("\n1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Delete\n5. Search Contact by "
-                           "city or state\n6. Count Contacts by city or state\n7. Sort\n8. Exit\n"))
+                           "city or state\n6. Count Contacts by city or state\n7. Sort\n8. Read & Write File\n9. Exit\n"
+                           ))
         if option == 1:
             Contact()
         elif option == 2:
@@ -29,17 +30,33 @@ class ShowMenu:
             contactname = input("Enter contact name\n")
             DeleteContact(contactname)
         elif option == 5:
-            searchoption = int(input("\t1: Search by city name\n\t2: Search by state name\n\t"))
-            cityname = input("\tEnter name: ")
-            SearchContact(searchoption, cityname)
+            while True:
+                searchoption = int(input("\t1: Search by city name\n\t2: Search by state name\n\t3: Exit\n\t"))
+                if searchoption == 3:
+                    break
+                cityname = input("\tEnter name: ")
+                SearchContact(searchoption, cityname)
         elif option == 6:
-            searchoption = int(input("\t1: count by city name\n\t2: count by state name\n\t"))
-            cityname = input("\tEnter name: ")
-            SearchAndCountContact(searchoption, cityname)
+            while True:
+                countoption = int(input("\t1: count by city name\n\t2: count by state name\n\t3: Exit\n\t"))
+                if countoption == 3:
+                    break
+                cityname = input("\tEnter name: ")
+                SearchAndCountContact(countoption, cityname)
         elif option == 7:
-            sortoption = int(input("\t1: sort by name\n\t2: sort by city name\n\t3: sort by state name\n\t4: sort by "
-                                   "zip code\n\t"))
-            Sort(sortoption)
+            while True:
+                sortoption = int(input("\t1: sort by name\n\t2: sort by city name\n\t3: sort by state name\n\t4: sort "
+                                       "by zip code\n\t5. Exit\n\t"))
+                if sortoption == 5:
+                    break
+                Sort(sortoption)
+
+        elif option == 8:
+            while True:
+                option = int(input("\t1: Write file\n\t2: Read file\n\t3: Exit\n\t"))
+                if option == 3:
+                    break
+                ReadAndWrite(option)
         else:
             break
 
