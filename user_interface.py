@@ -2,10 +2,10 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 14:00:00
-@Title : solve use case 9
+@Last Modified time: 09-02-2022 14:20:00
+@Title : solve use case 10
 """
-from address_book_main import Contact, EditContact, ShowContact, DeleteContact, SearchContact
+from address_book_main import Contact, EditContact, ShowContact, DeleteContact, SearchContact, SearchAndCountContact
 
 
 class ShowMenu:
@@ -13,8 +13,8 @@ class ShowMenu:
         desc: Show mein menu
     """
     while True:
-        option = int(input("1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Delete\n5. Search Contact by "
-                           "city or state\n6. Exit\n"))
+        option = int(input("\n1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Delete\n5. Search Contact by "
+                           "city or state\n6. Count Contacts by city or state\n7. Exit\n"))
         if option == 1:
             Contact()
         elif option == 2:
@@ -27,12 +27,15 @@ class ShowMenu:
             contactname = input("Enter contact name\n")
             DeleteContact(contactname)
         elif option == 5:
-            searchoption = int(input("1: Search by city name\n2: Search by state name\n"))
-            cityname = input("Enter name: ")
+            searchoption = int(input("\t1: Search by city name\n\t2: Search by state name\n\t"))
+            cityname = input("\tEnter name: ")
             SearchContact(searchoption, cityname)
+        elif option == 6:
+            searchoption = int(input("\t1: count by city name\n\t2: count by state name\n\t"))
+            cityname = input("\tEnter name: ")
+            SearchAndCountContact(searchoption, cityname)
         else:
             break
 
 
-if __name__ == '__main__':
-    ShowMenu()
+

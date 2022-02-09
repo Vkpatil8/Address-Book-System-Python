@@ -2,11 +2,9 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 14:00:00
-@Title : solve use case 9
+@Last Modified time: 09-02-2022 14:20:00
+@Title : solve use case 10
 """
-
-print("welcome in Address Book")
 
 
 class Contact:
@@ -27,7 +25,7 @@ class Contact:
             self.email = input("Enter email: ")
             self.addcontact()
         else:
-            print("Already exist")
+            print("Already exist\n")
 
     def __eq__(self, other):
         if Contact.contactlist[self.firstname] == Contact.contactlist[other.firstname]:
@@ -65,7 +63,7 @@ class EditContact:
                 value = input("Enter new: ")
                 Contact.contactlist[name]["{}".format(changeoption)] = value
         else:
-            print("Not exist")
+            print("Not exist\n")
 
 
 class ShowContact:
@@ -80,7 +78,7 @@ class ShowContact:
         if name in Contact.contactlist.keys():
             print(Contact.contactlist[name])
         else:
-            print("Not exist")
+            print("Not exist\n")
 
 
 class DeleteContact:
@@ -94,10 +92,10 @@ class DeleteContact:
         """
         if name in Contact.contactlist.keys():
             del Contact.contactlist[name]
-            print("contact details of {} is delete successfully".format(name))
+            print("contact details of {} is delete successfully\n".format(name))
 
         else:
-            print("Not exist")
+            print("Not exist\n")
 
 
 class SearchContact:
@@ -112,7 +110,7 @@ class SearchContact:
         elif option == 2:
             self.searchbystatename(name)
         else:
-            print("Choose Correct Option")
+            print("\tChoose Correct Option\n")
 
     def searchbycityname(self, cityname):
         """
@@ -120,9 +118,9 @@ class SearchContact:
         """
         for name in Contact.contactlist.keys():
             if Contact.contactlist[name]['4'] == cityname:
-                print(Contact.contactlist[name])
+                print("\tContact details is {}\n".format(Contact.contactlist[name]))
             else:
-                print("Not available")
+                print("\tNot available\n")
 
     def searchbystatename(self, statename):
         """
@@ -130,6 +128,45 @@ class SearchContact:
         """
         for name in Contact.contactlist.keys():
             if Contact.contactlist[name]['5'] == statename:
-                print(Contact.contactlist[name])
+                print("\tContact details is {}\n".format(Contact.contactlist[name]))
             else:
-                print("Not available")
+                print("\tNot available\n")
+
+
+class SearchAndCountContact:
+    def __init__(self, option, name):
+        self.name = name
+        self.option = option
+        self.options(option, name)
+
+    def options(self, option, name):
+        if option == 1:
+            self.searchbycityname(name)
+        elif option == 2:
+            self.searchbystatename(name)
+        else:
+            print("\tChoose Correct Option\n")
+
+    def searchbycityname(self, cityname):
+        """
+        desc: count particular contact from book using city name
+        """
+        count = 0
+        for name in Contact.contactlist.keys():
+            if Contact.contactlist[name]['4'] == cityname:
+                count = count + 1
+            else:
+                print("\tNot available")
+        print("\tcount of contacts in contact book is {}\n".format(count))
+
+    def searchbystatename(self, statename):
+        """
+        desc: count particular contact from book using city name
+        """
+        count = 0
+        for name in Contact.contactlist.keys():
+            if Contact.contactlist[name]['5'] == statename:
+                count = count + 1
+            else:
+                print("\tNot available")
+        print("\tcount of contacts in contact book is {}\n".format(count))
