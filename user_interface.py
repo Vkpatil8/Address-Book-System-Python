@@ -24,8 +24,7 @@ class ShowMenu:
             contactname = input("Enter contact name\n")
             EditContact(contactname)
         elif option == 3:
-            contactname = input("Enter contact name\n")
-            ShowContact(contactname)
+            ShowContact()
         elif option == 4:
             contactname = input("Enter contact name\n")
             DeleteContact(contactname)

@@ -91,20 +91,16 @@ class EditContact:
 
 
 class ShowContact:
-    def __init__(self, name):
-        self.name = name
-        self.showdetails(name)
+    def __init__(self):
+        self.showdetails()
 
     @staticmethod
-    def showdetails(name):
+    def showdetails():
         """
         desc: show particular contact details
-        :parameter name - assign name:
         """
-        if name in Contact.contactlist.keys():
-            print(Contact.contactlist[name])
-        else:
-            print("Not exist\n")
+        for key, values in Contact.contactlist.items():
+            print("{}:{}".format(key, values))
 
 
 class DeleteContact:
