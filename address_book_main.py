@@ -2,11 +2,12 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 21:30:00
-@Title : solve use case 14
+@Last Modified time: 10-02-2022 10:30:00
+@Title : solve use case 15
 """
 
 import csv
+import json
 from collections import OrderedDict
 from operator import getitem
 
@@ -47,7 +48,8 @@ class EditContact:
         self.name = name
         self.editcontact(name)
 
-    def editcontact(self, name):
+    @staticmethod
+    def editcontact(name):
         """
         desc: Edit existing contact
         :parameter name - assign name:
@@ -93,7 +95,8 @@ class ShowContact:
         self.name = name
         self.showdetails(name)
 
-    def showdetails(self, name):
+    @staticmethod
+    def showdetails(name):
         """
         desc: show particular contact details
         :parameter name - assign name:
@@ -109,7 +112,8 @@ class DeleteContact:
         self.name = name
         self.deletecontact(name)
 
-    def deletecontact(self, name):
+    @staticmethod
+    def deletecontact(name):
         """
         desc: Delete particular contact from book
         :parameter name - assign book name:
@@ -142,7 +146,8 @@ class SearchContact:
         else:
             print("\tChoose Correct Option\n")
 
-    def searchbycityname(self, cityname):
+    @staticmethod
+    def searchbycityname(cityname):
         """
         desc: search particular contact from book using city name
         :parameter cityname: assign city name to search
@@ -153,7 +158,8 @@ class SearchContact:
             else:
                 print("\tNot available\n")
 
-    def searchbystatename(self, statename):
+    @staticmethod
+    def searchbystatename(statename):
         """
         desc: search particular contact from book using city name
         :parameter statename: assign state name
@@ -184,7 +190,8 @@ class SearchAndCountContact:
         else:
             print("\tChoose Correct Option\n")
 
-    def searchbycityname(self, cityname):
+    @staticmethod
+    def searchbycityname(cityname):
         """
         desc: count particular contact from book using city name
         :parameter cityname - assign cityname:
@@ -197,7 +204,8 @@ class SearchAndCountContact:
                 print("\tNot available")
         print("\tcount of contacts in contact book is {}\n".format(count))
 
-    def searchbystatename(self, statename):
+    @staticmethod
+    def searchbystatename(statename):
         """
         desc: count particular contact from book using city name
         :parameter statename: assign state name
@@ -218,7 +226,7 @@ class Sort:
 
     def options(self, option):
         """
-        desc: search particular contact from book using city name
+        desc: provide options to call method
         :parameter option: assign options to call methods
         """
         if option == 1:
@@ -232,28 +240,32 @@ class Sort:
         else:
             print("\tChoose Correct Option\n")
 
-    def sortbyname(self):
+    @staticmethod
+    def sortbyname():
         """
         desc: sort by name
         """
         list1 = sorted(Contact.contactlist.items())
         print(list1)
 
-    def sortbycity(self):
+    @staticmethod
+    def sortbycity():
         """
         desc: sort by city name
         """
         res = OrderedDict(sorted(Contact.contactlist.items(), key=lambda x: getitem(x[1], 'city')))
         print("The sorted dictionary by city name is : " + str(res))
 
-    def sortbystate(self):
+    @staticmethod
+    def sortbystate():
         """
         desc: sort by state name
         """
         res = OrderedDict(sorted(Contact.contactlist.items(), key=lambda x: getitem(x[1], 'state')))
         print("The sorted dictionary by state name is : " + str(res))
 
-    def sortbyzip(self):
+    @staticmethod
+    def sortbyzip():
         """
         desc: sort by zip code
         """
@@ -268,7 +280,7 @@ class ReadAndWrite:
 
     def options(self, option):
         """
-        desc: search particular contact from book using city name
+        desc: provide options to call method
         :parameter option: assign options to call methods
         """
         if option == 1:
@@ -278,7 +290,8 @@ class ReadAndWrite:
         else:
             print("\tChoose Correct Option\n")
 
-    def writefile(self):
+    @staticmethod
+    def writefile():
         """
         desc: Write all details in file
         """
@@ -288,7 +301,8 @@ class ReadAndWrite:
             print("file write successfully")
         file.close()
 
-    def readfile(self):
+    @staticmethod
+    def readfile():
         """
         desc: read all details in file
         """
@@ -303,7 +317,7 @@ class ReadAndWriteInCsv:
 
     def options(self, option):
         """
-        desc: search particular contact from book using city name
+        desc: provide options to call method
         :parameter option: assign options to call methods
         """
         if option == 1:
@@ -313,7 +327,8 @@ class ReadAndWriteInCsv:
         else:
             print("\tChoose Correct Option\n")
 
-    def writefile(self):
+    @staticmethod
+    def writefile():
         """
         desc: Write all details in csv file
         """
@@ -325,11 +340,50 @@ class ReadAndWriteInCsv:
             print("file write successfully")
         file.close()
 
-    def readfile(self):
+    @staticmethod
+    def readfile():
         """
         desc: read all details in csv file
         """
         with open('addresbook.csv', mode='r') as file:
-            csvFile = csv.reader(file)
-            for lines in csvFile:
+            csvfile = csv.reader(file)
+            for lines in csvfile:
                 print(lines)
+
+
+class ReadAndWriteInJson:
+    def __init__(self, option):
+        self.option = option
+        self.options(option)
+
+    def options(self, option):
+        """
+        desc: provide options to call method
+        :parameter option: assign options to call methods
+        """
+        if option == 1:
+            self.writefile()
+        elif option == 2:
+            self.readfile()
+        else:
+            print("\tChoose Correct Option\n")
+
+    @staticmethod
+    def writefile():
+        """
+        desc: Write all details in json file
+        """
+        file = open("addresbook.json", "w")
+        json.dump(Contact.contactlist, file)
+        print("file write successfully")
+        file.close()
+
+    @staticmethod
+    def readfile():
+        """
+        desc: read all details in json file
+        """
+        file = open('addresbook.json')
+        data = json.load(file)
+        print(data)
+        file.close()

@@ -2,12 +2,12 @@
 @Author: Vishal Patil
 @Date: 08-02-2022 11-00-00
 @Last Modified by: Vishal Patil
-@Last Modified time: 09-02-2022 21:30:00
-@Title : solve use case 14
+@Last Modified time: 10-02-2022 10:30:00
+@Title : solve use case 15
 """
 
 from address_book_main import Contact, EditContact, ShowContact, DeleteContact, SearchContact, SearchAndCountContact, \
-    Sort, ReadAndWrite, ReadAndWriteInCsv
+    Sort, ReadAndWrite, ReadAndWriteInCsv, ReadAndWriteInJson
 
 
 class ShowMenu:
@@ -17,7 +17,7 @@ class ShowMenu:
     while True:
         option = int(input("\n1. Create Contact\n2. Edit Contact\n3. Show Details \n4. Delete\n5. Search Contact by "
                            "city or state\n6. Count Contacts by city or state\n7. Sort\n8. Read & Write File\n9. Read "
-                           "& Write Csv File\n10. Exit\n "))
+                           "& Write Csv File\n10. Read & Write Json File\n11. Exit\n "))
         if option == 1:
             Contact()
         elif option == 2:
@@ -63,8 +63,16 @@ class ShowMenu:
                 if option == 3:
                     break
                 ReadAndWriteInCsv(option)
-        else:
+        elif option == 10:
+            while True:
+                option = int(input("\t1: Write file\n\t2: Read file\n\t3: Exit\n\t"))
+                if option == 3:
+                    break
+                ReadAndWriteInJson(option)
+        elif option == 11:
             break
+        else:
+            print("Enter correct option")
 
 
 
