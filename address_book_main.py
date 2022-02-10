@@ -304,7 +304,7 @@ class ReadAndWrite:
     @staticmethod
     def readfile():
         """
-        desc: read all details in file
+        desc: read all details from file
         """
         file = open("addresbook.txt", "r")
         print(file.read())
@@ -343,7 +343,7 @@ class ReadAndWriteInCsv:
     @staticmethod
     def readfile():
         """
-        desc: read all details in csv file
+        desc: read all details from csv file
         """
         with open('addresbook.csv', mode='r') as file:
             csvfile = csv.reader(file)
@@ -381,7 +381,7 @@ class ReadAndWriteInJson:
     @staticmethod
     def readfile():
         """
-        desc: read all details in json file
+        desc: read all details from json file
         """
         file = open('addresbook.json')
         data = json.load(file)

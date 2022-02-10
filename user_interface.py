@@ -73,6 +73,3 @@ class ShowMenu:
             break
         else:
             print("Enter correct option")
-
-
-
